@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
-import 'package:super_music/utility/utility.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:super_music/data/models/state/appState.dart';
+import 'package:super_music/data/models/state/viewmodels/homeView.dart';
 import 'package:super_music/widgets/pageLayout.dart';
-import 'package:super_music/widgets/searchBar.dart';
-import 'package:super_music/widgets/showList.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -16,7 +17,12 @@ class HomePage extends StatelessWidget {
         title: new Text(this.title),
       ),
       backgroundColor: Theme.of(context).accentColor,
-      body: PageLayout(placeholderList, true),
+      body: StoreConnector(
+        distinct: true,
+        converter: (Store<AppState> store) => HomeView.fromStore(store),
+        builder: (BuildContext context, HomeView homeView) =>
+            PageLayout(homeView.searchResults, true),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

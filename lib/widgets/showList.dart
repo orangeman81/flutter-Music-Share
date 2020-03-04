@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:super_music/utility/utility.dart';
+import 'package:super_music/data/models/api/searchResult.dart';
 
 class ShowList extends StatelessWidget {
-  final List<ListItem> dataList;
+  final List<SearchResult> dataList;
 
   ShowList(this.dataList);
 
@@ -17,11 +17,11 @@ class ShowList extends StatelessWidget {
               child: Icon(Icons.album, color: Theme.of(context).accentColor),
             ),
             title: Text(
-              '${dataList[index].artist}',
+              '${dataList[index].artist.name}',
               style: Theme.of(context).textTheme.title,
             ),
             subtitle: Text(
-              '${dataList[index].album}',
+              '${dataList[index].title}',
               style: Theme.of(context).textTheme.subtitle,
             ),
             onTap: () => Navigator.pushNamed(context, "details"),

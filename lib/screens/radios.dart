@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:super_music/utility/utility.dart';
 import 'package:super_music/widgets/pageLayout.dart';
-import 'package:super_music/widgets/showList.dart';
 
 
 class RadioPage extends StatelessWidget {
@@ -16,7 +15,7 @@ class RadioPage extends StatelessWidget {
         title: new Text(this.title),
       ),
       backgroundColor: Theme.of(context).accentColor,
-      body: PageLayout(placeholderList, false),
+      body: PageLayout(initialStateList, false),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

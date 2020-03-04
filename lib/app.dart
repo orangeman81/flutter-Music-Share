@@ -1,16 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:super_music/data/models/state/appState.dart';
+import 'package:super_music/data/redux/actions.dart';
+import 'package:super_music/data/redux/middleware.dart';
+import 'package:super_music/data/redux/reducers.dart';
 import 'package:super_music/screens/details.dart';
 import 'package:super_music/screens/home.dart';
 import 'package:super_music/screens/radios.dart';
+import 'package:redux/redux.dart';
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
+  final Store<AppState> store = Store<AppState>(
+    stateReducer,
+    initialState: AppState.initialState(),
+    middleware: [appStateMiddleware],
+  );
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Super Music',
-      theme: ThemeData(
+    return StoreProvider(
+      store: store,
+      child: MaterialApp(
+        title: 'Super Music',
+        theme: themeBuilder(),
+        home: StoreBuilder(
+          onInit: (store) => store.dispatch(SearchAction("jimi hendrix")),
+          builder: (BuildContext context, Store<AppState> store) =>
+              HomePage(title: "Super Music"),
+        ),
+        // onGenerateRoute: routes,
+      ),
+    );
+  }
+
+  Route routes(RouteSettings settings) {
+    switch (settings.name) {
+      case "/":
+        return MaterialPageRoute(builder: (context) {
+          return HomePage(title: "Super Music");
+        });
+      case "radios":
+        return MaterialPageRoute(builder: (context) {
+          return RadioPage(title: "Radios");
+        });
+      case "details":
+        return MaterialPageRoute(builder: (context) {
+          return DetailsPage(title: "Details");
+        });
+      default:
+        return MaterialPageRoute(builder: (context) {
+          return HomePage(title: "Super Music");
+        });
+    }
+  }
+
+  ThemeData themeBuilder() {
+    return ThemeData(
         primaryColor: Colors.cyan[900],
         accentColor: Colors.yellowAccent[400],
         brightness: Brightness.dark,
@@ -43,30 +89,6 @@ class App extends StatelessWidget {
           subtitle: GoogleFonts.openSans(),
           body1: GoogleFonts.openSans(),
           body2: GoogleFonts.openSans(),
-        )
-      ),
-      onGenerateRoute: routes,
-    );
-  }
-
-  Route routes(RouteSettings settings) {
-    switch (settings.name) {
-      case "/":
-        return MaterialPageRoute(builder: (context) {
-          return HomePage(title: "Super Music");
-        });
-      case "radios":
-        return MaterialPageRoute(builder: (context) {
-          return RadioPage(title: "Radios");
-        });
-      case "details":
-        return MaterialPageRoute(builder: (context) {
-          return DetailsPage(title: "Details");
-        });
-      default:
-        return MaterialPageRoute(builder: (context) {
-          return HomePage(title: "Super Music");
-        });
-    }
+        ));
   }
 }

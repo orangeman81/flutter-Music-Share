@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:super_music/data/models/api/searchResult.dart';
 import 'package:super_music/widgets/searchBar.dart';
 import 'package:super_music/widgets/showList.dart';
 
 class PageLayout extends StatelessWidget {
-  final data;
+  final List<SearchResult> data;
   final bool withSearch;
 
   PageLayout(this.data, this.withSearch);
@@ -27,7 +28,7 @@ class PageLayout extends StatelessWidget {
                   child: withSearch
                       ? SearchBar()
                       : Text(
-                          data[0].artist,
+                          data[0].artist.name,
                           style: TextStyle(
                             fontSize:
                                 Theme.of(context).textTheme.display2.fontSize,

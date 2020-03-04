@@ -14,7 +14,7 @@ class DetailsPage extends StatelessWidget {
         title: new Text(this.title),
       ),
       backgroundColor: Theme.of(context).accentColor,
-      body: PageLayout(placeholderList, false),
+      body: PageLayout(initialStateList, false),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
