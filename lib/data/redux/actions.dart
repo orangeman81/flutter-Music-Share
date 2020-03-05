@@ -8,7 +8,7 @@ class SearchAction {
 }
 
 class LoadResultsAction {
-  final List<SearchResult> results;
+  final List<dynamic> results;
   LoadResultsAction(this.results);
 }
 

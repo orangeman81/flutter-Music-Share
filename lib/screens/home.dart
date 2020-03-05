@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         distinct: true,
         converter: (Store<AppState> store) => HomeView.fromStore(store),
         builder: (BuildContext context, HomeView homeView) =>
-            PageLayout(homeView.searchResults, true),
+            PageLayout(homeView, true),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

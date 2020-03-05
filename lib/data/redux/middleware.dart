@@ -10,10 +10,9 @@ void appStateMiddleware(
   final AlbumProvider provider = AlbumProvider();
 
   if (action is SearchAction) {
+    print(action.query);
     final String query = action.query;
     final results = await provider.fetchSearchResults(query);
-    debugPrint("results");
-    debugPrint(results.toString());
-    results.then(store.dispatch(LoadResultsAction(results)));
+    store.dispatch(LoadResultsAction(results));
   }
 }

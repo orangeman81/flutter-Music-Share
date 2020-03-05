@@ -24,21 +24,20 @@ class App extends StatelessWidget {
       child: MaterialApp(
         title: 'Super Music',
         theme: themeBuilder(),
-        home: StoreBuilder(
-          onInit: (store) => store.dispatch(SearchAction("jimi hendrix")),
-          builder: (BuildContext context, Store<AppState> store) =>
-              HomePage(title: "Super Music"),
-        ),
-        // onGenerateRoute: routes,
+        onGenerateRoute: (RouteSettings settings) => routes(settings, store),
       ),
     );
   }
 
-  Route routes(RouteSettings settings) {
+  Route routes(RouteSettings settings, Store<AppState> store) {
     switch (settings.name) {
       case "/":
         return MaterialPageRoute(builder: (context) {
-          return HomePage(title: "Super Music");
+          return StoreBuilder(
+            onInit: (store) => store.dispatch(SearchAction("jimi hendrix")),
+            builder: (BuildContext context, Store<AppState> store) =>
+                HomePage(title: "Super Music"),
+          );
         });
       case "radios":
         return MaterialPageRoute(builder: (context) {
@@ -57,27 +56,27 @@ class App extends StatelessWidget {
 
   ThemeData themeBuilder() {
     return ThemeData(
-        primaryColor: Colors.cyan[900],
+        primaryColor: Colors.blueGrey[900],
         accentColor: Colors.yellowAccent[400],
         brightness: Brightness.dark,
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
-            color: Colors.cyan[900],
+            color: Colors.blueGrey[900],
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.00),
-            borderSide: BorderSide(color: Colors.cyan[900], width: 2),
+            borderSide: BorderSide(color: Colors.blueGrey[900], width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.00),
-            borderSide: BorderSide(color: Colors.cyan[900], width: 2),
+            borderSide: BorderSide(color: Colors.blueGrey[900], width: 2),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.00),
             borderSide: BorderSide(color: Colors.cyan[700], width: 2),
           ),
           hintStyle: TextStyle(
-            color: Colors.cyan[900],
+            color: Colors.blueGrey[900],
           ),
           contentPadding: EdgeInsets.all(24),
         ),

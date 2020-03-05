@@ -13,7 +13,7 @@ class ShowList extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.cyan[700],
+              backgroundColor: Colors.white24,
               child: Icon(Icons.album, color: Theme.of(context).accentColor),
             ),
             title: Text(

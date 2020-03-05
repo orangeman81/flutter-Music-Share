@@ -12,11 +12,11 @@ class HomeView {
 
   factory HomeView.fromStore(Store<AppState> store) {
     _onSearch(String query) {
-      return SearchAction(query);
+      return store.dispatch(SearchAction(query));
     }
 
     _onLoad(List<SearchResult> results) {
-      return LoadResultsAction(results);
+      return store.dispatch(LoadResultsAction(results));
     }
 
     return HomeView(
