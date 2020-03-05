@@ -1,4 +1,4 @@
-import 'package:super_music/data/models/api/searchResult.dart';
+import 'package:super_music/data/models/api/details.dart';
 
 enum Actions { Search, Load, Details, RadioList, Radio }
 
@@ -7,12 +7,17 @@ class SearchAction {
   SearchAction(this.query);
 }
 
+class RequestDetailsAction {
+  final int id;
+  RequestDetailsAction(this.id);
+}
+
 class LoadResultsAction {
   final List<dynamic> results;
   LoadResultsAction(this.results);
 }
 
-class DetailsAction {
-  final SearchResult details;
-  DetailsAction(this.details);
+class LoadDetailsAction {
+  final Details details;
+  LoadDetailsAction(this.details);
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:super_music/data/models/api/details.dart';
 import 'package:super_music/data/models/api/searchResult.dart';
 
 class AppState {
   final List<SearchResult> searchResults;
   String query;
-  SearchResult details;
+  Details details;
   List<Radio> radioList;
   Radio radio;
 

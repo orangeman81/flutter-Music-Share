@@ -15,14 +15,9 @@ class HomeView {
       return store.dispatch(SearchAction(query));
     }
 
-    _onLoad(List<SearchResult> results) {
-      return store.dispatch(LoadResultsAction(results));
-    }
-
     return HomeView(
       searchResults: store.state.searchResults,
       onSearch: _onSearch,
-      onLoad: _onLoad,
     );
   }
 }

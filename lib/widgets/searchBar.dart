@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart' show DebounceExtensions;
 import 'package:rxdart/subjects.dart';
 
 class SearchBar extends StatefulWidget {
 
-  Function _onSearch;
+  final Function _onSearch;
 
   SearchBar(this._onSearch);
 
@@ -32,8 +30,8 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: 'Artist',
-        hintText: "look for an Album",
+        labelText: 'Search',
+        hintText: "look for a track",
       ),
       style: TextStyle(
         color: Colors.black87,

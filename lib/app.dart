@@ -45,7 +45,11 @@ class App extends StatelessWidget {
         });
       case "details":
         return MaterialPageRoute(builder: (context) {
-          return DetailsPage(title: "Details");
+          return StoreBuilder(
+            onInit: (store) => store.dispatch(RequestDetailsAction(131359122)),
+            builder: (BuildContext context, Store<AppState> store) =>
+                DetailsPage(title: "Details"),
+          );
         });
       default:
         return MaterialPageRoute(builder: (context) {

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:super_music/data/models/state/appState.dart';
 import 'package:redux/redux.dart';
 import 'package:super_music/data/redux/actions.dart';
@@ -10,9 +9,14 @@ void appStateMiddleware(
   final AlbumProvider provider = AlbumProvider();
 
   if (action is SearchAction) {
-    print(action.query);
     final String query = action.query;
     final results = await provider.fetchSearchResults(query);
     store.dispatch(LoadResultsAction(results));
+  }
+
+  if (action is RequestDetailsAction) {
+    final int id = action.id;
+    final results = await provider.fetchDetails(id);
+    store.dispatch(LoadDetailsAction(results));
   }
 }

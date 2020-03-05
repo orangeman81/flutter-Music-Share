@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:super_music/data/models/state/viewmodels/homeView.dart';
-import 'package:super_music/widgets/searchBar.dart';
-import 'package:super_music/widgets/showList.dart';
+import 'package:super_music/data/models/state/viewmodels/detailsView.dart';
 
-class PageLayout extends StatelessWidget {
-  final HomeView model;
-  final bool withSearch;
+class DetailsLayout extends StatelessWidget {
+  final DetailsView model;
 
-  PageLayout(this.model, this.withSearch);
+  DetailsLayout(this.model);
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +22,8 @@ class PageLayout extends StatelessWidget {
                 Container(
                   height: 100,
                   padding: EdgeInsets.all(16),
-                  child: withSearch
-                      ? SearchBar(model.onSearch)
-                      : Text(
-                          model.searchResults[0].artist.name,
+                  child: Text(
+                          model.details.title,
                           style: TextStyle(
                               fontSize:
                                   Theme.of(context).textTheme.display2.fontSize,
@@ -43,7 +38,7 @@ class PageLayout extends StatelessWidget {
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(124)),
                   ),
-                  child: ShowList(model.searchResults),
+                  child: Container(),
                 )
               ],
             ),

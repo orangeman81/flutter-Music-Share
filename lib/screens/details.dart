@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
-import 'package:super_music/utility/utility.dart';
-import 'package:super_music/widgets/pageLayout.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:super_music/data/models/state/appState.dart';
+import 'package:super_music/data/models/state/viewmodels/detailsView.dart';
+import 'package:super_music/widgets/detailsLayout.dart';
 
 class DetailsPage extends StatelessWidget {
   final String title;
@@ -14,7 +17,12 @@ class DetailsPage extends StatelessWidget {
         title: new Text(this.title),
       ),
       backgroundColor: Theme.of(context).accentColor,
-      body: PageLayout(null, false),
+      body: StoreConnector(
+        distinct: true,
+        converter: (Store<AppState> store) => DetailsView.fromStore(store),
+        builder: (BuildContext context, DetailsView detailsView) =>
+            DetailsLayout(detailsView),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

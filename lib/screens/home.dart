@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:super_music/data/models/state/appState.dart';
 import 'package:super_music/data/models/state/viewmodels/homeView.dart';
-import 'package:super_music/widgets/pageLayout.dart';
+import 'package:super_music/widgets/homeLayout.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         distinct: true,
         converter: (Store<AppState> store) => HomeView.fromStore(store),
         builder: (BuildContext context, HomeView homeView) =>
-            PageLayout(homeView, true),
+            HomeLayout(homeView, true),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
