@@ -14,8 +14,9 @@ class ShowList extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.white24,
-              child: Icon(Icons.album, color: Theme.of(context).accentColor),
+              backgroundImage: NetworkImage(dataList[index].album.coverSmall),
             ),
+            trailing: Icon(Icons.album, color: Theme.of(context).accentColor),
             title: Text(
               '${dataList[index].artist.name}',
               style: Theme.of(context).textTheme.title,
@@ -24,7 +25,11 @@ class ShowList extends StatelessWidget {
               '${dataList[index].title}',
               style: Theme.of(context).textTheme.subtitle,
             ),
-            onTap: () => Navigator.pushNamed(context, "details", arguments: dataList[index].album.id),
+            onTap: () => Navigator.pushNamed(
+              context,
+              "details",
+              arguments: dataList[index].album.id,
+            ),
           );
         });
   }

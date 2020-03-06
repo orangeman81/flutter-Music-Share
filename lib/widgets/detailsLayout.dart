@@ -55,7 +55,7 @@ class DetailsLayout extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundColor: Theme.of(context).accentColor,
                   backgroundImage: NetworkImage(
-                    model.details.artist.pictureBig,
+                    model.details.coverBig,
                   ),
                 ),
               ),
