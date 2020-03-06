@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:super_music/data/models/api/artist.dart';
 import 'package:super_music/data/models/api/details.dart';
+import 'package:super_music/data/models/api/radioResult.dart';
 import 'package:super_music/data/models/api/searchResult.dart';
 
 class AppState {
   final List<SearchResult> searchResults;
   final Details details;
-  List<Radio> radioList;
-  Radio radio;
+  List<RadioResult> radioList;
+  List<SearchResult> radio;
 
   AppState({
     @required this.searchResults,
-    this.details,
-    this.radioList,
+    @required this.details,
+    @required this.radioList,
     this.radio,
   });
 
@@ -21,6 +22,9 @@ class AppState {
         details = new Details(
           title: "loading",
           tracks: [],
-          artist: new Artist(name: "loading", pictureBig: ""),
-        );
+          coverBig: "https://via.placeholder.com/88",
+          artist: new Artist(name: "loading"),
+        ),
+        radioList = List.unmodifiable([]),
+        radio = List.unmodifiable([]);
 }

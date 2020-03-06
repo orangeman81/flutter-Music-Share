@@ -19,4 +19,15 @@ void appStateMiddleware(
     final results = await provider.fetchDetails(id);
     store.dispatch(LoadDetailsAction(results));
   }
+
+  if (action is RequestRadioListAction) {
+    final results = await provider.fetchRadioList();
+    store.dispatch(LoadRadioListAction(results));
+  }
+
+  if (action is RequestRadioDetailsAction) {
+    final int id = action.id;
+    final results = await provider.fetchRadioDetails(id);
+    store.dispatch(LoadRadioDetailsAction(results));
+  }
 }

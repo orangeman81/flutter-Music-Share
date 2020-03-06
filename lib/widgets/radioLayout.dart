@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:super_music/data/models/state/viewmodels/homeView.dart';
-import 'package:super_music/widgets/searchBar.dart';
-import 'package:super_music/widgets/showList.dart';
+import 'package:super_music/data/models/state/viewmodels/radioView.dart';
+import 'package:super_music/widgets/radioList.dart';
 
-class HomeLayout extends StatelessWidget {
-  final HomeView model;
-  final bool withSearch;
+class RadioLayout extends StatelessWidget {
+  final RadioView model;
 
-  HomeLayout(this.model, this.withSearch);
+  RadioLayout(this.model);
 
   @override
   Widget build(BuildContext context) {
@@ -25,26 +23,22 @@ class HomeLayout extends StatelessWidget {
                 Container(
                   height: 100,
                   padding: EdgeInsets.all(16),
-                  child: withSearch
-                      ? SearchBar(model.onSearch)
-                      : Text(
-                          model.searchResults[0].artist.name,
-                          style: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.display2.fontSize,
-                            color: Colors.black87,
-                          ),
-                        ),
+                  child: Text(
+                    "Radio List",
+                    style: TextStyle(
+                      fontSize: Theme.of(context).textTheme.display2.fontSize,
+                    ),
+                  ),
                 ),
                 Container(
                   height: viewportConstraints.maxHeight - 100,
                   padding: EdgeInsets.only(top: 64, left: 8, right: 8),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(124)),
                   ),
-                  child: ShowList(model.searchResults, true),
+                  child: RadioList(model.radioList),
                 )
               ],
             ),

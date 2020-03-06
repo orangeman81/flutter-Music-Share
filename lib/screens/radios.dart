@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
-import 'package:super_music/widgets/homeLayout.dart';
-
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:super_music/data/models/state/appState.dart';
+import 'package:super_music/data/models/state/viewmodels/radioView.dart';
+import 'package:super_music/widgets/radioLayout.dart';
 
 class RadioPage extends StatelessWidget {
   final String title;
@@ -13,25 +16,12 @@ class RadioPage extends StatelessWidget {
       appBar: AppBar(
         title: new Text(this.title),
       ),
-      backgroundColor: Theme.of(context).accentColor,
-      body: HomeLayout(null, false),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.album),
-            title: Text('Albums'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            title: Text('Artists'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.radio),
-            title: Text('Radios'),
-          ),
-        ],
-        selectedItemColor: Theme.of(context).accentColor,
-        onTap: null,
+      backgroundColor: Theme.of(context).primaryColor,
+      body: StoreConnector(
+        distinct: true,
+        converter: (Store<AppState> store) => RadioView.fromStore(store),
+        builder: (BuildContext context, RadioView radioView) =>
+            RadioLayout(radioView),
       ),
     );
   }

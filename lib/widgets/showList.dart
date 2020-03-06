@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:super_music/data/models/api/searchResult.dart';
+import 'package:super_music/utility/utility.dart';
 
 class ShowList extends StatelessWidget {
   final List<SearchResult> dataList;
+  final bool dark;
 
-  ShowList(this.dataList);
+  ShowList(this.dataList, this.dark);
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +21,15 @@ class ShowList extends StatelessWidget {
             trailing: Icon(Icons.album, color: Theme.of(context).accentColor),
             title: Text(
               '${dataList[index].artist.name}',
-              style: Theme.of(context).textTheme.title,
+              style: dark
+                  ? Theme.of(context).textTheme.title
+                  : darkText(context, true),
             ),
             subtitle: Text(
               '${dataList[index].title}',
-              style: Theme.of(context).textTheme.subtitle,
+              style: dark
+                  ? Theme.of(context).textTheme.subtitle
+                  : darkText(context, false),
             ),
             onTap: () => Navigator.pushNamed(
               context,

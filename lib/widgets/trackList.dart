@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_music/data/models/api/details.dart';
+import 'package:super_music/utility/utility.dart';
 
 class TrackList extends StatelessWidget {
   final List<Tracks> dataList;
@@ -12,22 +13,16 @@ class TrackList extends StatelessWidget {
         itemCount: dataList.length,
         itemBuilder: (context, index) {
           return ListTile(
-            trailing: Icon(Icons.play_circle_filled, color: Theme.of(context).primaryColor),
+            trailing: Icon(Icons.play_circle_filled,
+                color: Theme.of(context).primaryColor),
             title: Text(
               '${dataList[index].titleShort}',
-              style: TextStyle(
-                fontFamily: Theme.of(context).textTheme.title.fontFamily,
-                fontSize: Theme.of(context).textTheme.title.fontSize,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
-              ),
+              style: darkText(context, true),
             ),
-            subtitle: Text('${dataList[index].artist.name}',
-                style: TextStyle(
-                  fontFamily: Theme.of(context).textTheme.subtitle.fontFamily,
-                  fontSize: Theme.of(context).textTheme.subtitle.fontSize,
-                  color: Colors.black87,
-                )),
+            subtitle: Text(
+              '${dataList[index].artist.name}',
+              style: darkText(context, false),
+            ),
           );
         });
   }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' show Client;
 import 'package:super_music/data/models/api/details.dart';
+import 'package:super_music/data/models/api/radioResult.dart';
 import 'package:super_music/data/models/api/searchResult.dart';
 
 class AlbumProvider {
@@ -32,6 +33,32 @@ class AlbumProvider {
 
     final jsonData = json.decode(response.body);
     Details results = new Details.fromJson(jsonData);
+    return results;
+  }
+
+  Future fetchRadioList() async {
+    final response = await client.get(
+      baseUrl + "radio/lists",
+      headers: headers,
+    );
+
+    final jsonData = json.decode(response.body);
+    final data = jsonData['data'];
+    List<RadioResult> results = [];
+    data.forEach((item) => results.add(RadioResult.fromJson(item)));
+    return results;
+  }
+
+  Future fetchRadioDetails(int id) async {
+    final response = await client.get(
+      baseUrl + "radio/$id/tracks",
+      headers: headers,
+    );
+
+    final jsonData = json.decode(response.body);
+    final data = jsonData['data'];
+    List<SearchResult> results = [];
+    data.forEach((item) => results.add(SearchResult.fromJson(item)));
     return results;
   }
 }

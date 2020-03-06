@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:super_music/data/models/api/radioArguments.dart';
 import 'package:super_music/data/models/state/appState.dart';
 import 'package:super_music/data/redux/actions.dart';
 import 'package:super_music/data/redux/middleware.dart';
 import 'package:super_music/data/redux/reducers.dart';
 import 'package:super_music/screens/details.dart';
 import 'package:super_music/screens/home.dart';
+import 'package:super_music/screens/radioDetails.dart';
 import 'package:super_music/screens/radios.dart';
 import 'package:redux/redux.dart';
 
@@ -34,21 +36,42 @@ class App extends StatelessWidget {
       case "/":
         return MaterialPageRoute(builder: (context) {
           return StoreBuilder(
-            onInit: (store) => store.dispatch(SearchAction("jimi hendrix")),
+            onInit: (store) => store.dispatch(
+              SearchAction("jimi hendrix"),
+            ),
             builder: (BuildContext context, Store<AppState> store) =>
                 HomePage(title: "Super Music"),
           );
         });
       case "radios":
         return MaterialPageRoute(builder: (context) {
-          return RadioPage(title: "Radios");
+          return StoreBuilder(
+            onInit: (store) => store.dispatch(
+              RequestRadioListAction(),
+            ),
+            builder: (BuildContext context, Store<AppState> store) =>
+                RadioPage(title: "Radio"),
+          );
         });
       case "details":
         return MaterialPageRoute(builder: (context) {
           return StoreBuilder(
-            onInit: (store) => store.dispatch(RequestDetailsAction(settings.arguments as int)),
+            onInit: (store) => store.dispatch(
+              RequestDetailsAction(settings.arguments as int),
+            ),
             builder: (BuildContext context, Store<AppState> store) =>
                 DetailsPage(title: store.state.details.title),
+          );
+        });
+      case "radioDetails":
+        final RadioArguments args = settings.arguments;
+        return MaterialPageRoute(builder: (context) {
+          return StoreBuilder(
+            onInit: (store) => store.dispatch(
+              RequestRadioDetailsAction(args.id),
+            ),
+            builder: (BuildContext context, Store<AppState> store) =>
+                RadioDetailsPage(title: "Radio details", arguments: args),
           );
         });
       default:

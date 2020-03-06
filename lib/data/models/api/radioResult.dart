@@ -1,4 +1,4 @@
-class Radio {
+class RadioResult {
   int id;
   String title;
   String description;
@@ -11,7 +11,7 @@ class Radio {
   String tracklist;
   String type;
 
-  Radio(
+  RadioResult(
       {this.id,
       this.title,
       this.description,
@@ -24,7 +24,7 @@ class Radio {
       this.tracklist,
       this.type});
 
-  Radio.fromJson(Map<String, dynamic> json) {
+  RadioResult.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
