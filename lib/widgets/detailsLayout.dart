@@ -20,53 +20,75 @@ class DetailsLayout extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Container(
-                    height: 200,
-                    padding: EdgeInsets.all(16),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 24),
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  model.details.artist.pictureBig,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Text(
-                            model.details.artist.name,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize:
-                                  Theme.of(context).textTheme.display2.fontSize,
-                            ),
-                          ),
-                        )
-                      ],
-                    )),
-                Container(
-                  height: viewportConstraints.maxHeight - 200,
-                  padding: EdgeInsets.only(top: 64, left: 8, right: 8),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(124)),
-                  ),
-                  child: TrackList(model.details.tracks),
+                _buildTopContainer(
+                  context,
+                  model,
+                ),
+                _buildBottomContainer(
+                  context,
+                  model,
+                  viewportConstraints,
                 )
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  _buildTopContainer(
+    BuildContext context,
+    DetailsView model,
+  ) {
+    return Container(
+      height: 200,
+      padding: EdgeInsets.all(16),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.only(right: 24),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: CircleAvatar(
+                  backgroundColor: Theme.of(context).accentColor,
+                  backgroundImage: NetworkImage(
+                    model.details.artist.pictureBig,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 7,
+            child: Text(
+              model.details.artist.name,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.display2.fontSize,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  _buildBottomContainer(
+    BuildContext context,
+    DetailsView model,
+    BoxConstraints viewportConstraints,
+  ) {
+    return Container(
+      height: viewportConstraints.maxHeight - 200,
+      padding: EdgeInsets.only(top: 64, left: 8, right: 8),
+      decoration: BoxDecoration(
+        color: Theme.of(context).accentColor,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(124)),
+      ),
+      child: TrackList(model.details.tracks),
     );
   }
 }
