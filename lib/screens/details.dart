@@ -16,31 +16,13 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: new Text(this.title),
       ),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: StoreConnector(
         distinct: true,
         converter: (Store<AppState> store) => DetailsView.fromStore(store),
         builder: (BuildContext context, DetailsView detailsView) =>
             DetailsLayout(detailsView),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.album),
-            title: Text('Albums'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            title: Text('Artists'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.radio),
-            title: Text('Radios'),
-          ),
-        ],
-        selectedItemColor: Theme.of(context).accentColor,
-        onTap: (int index) => Navigator.pushNamed(context, '/'),
-      ),
+      )
     );
   }
 }

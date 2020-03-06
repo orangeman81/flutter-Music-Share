@@ -46,9 +46,9 @@ class App extends StatelessWidget {
       case "details":
         return MaterialPageRoute(builder: (context) {
           return StoreBuilder(
-            onInit: (store) => store.dispatch(RequestDetailsAction(131359122)),
+            onInit: (store) => store.dispatch(RequestDetailsAction(settings.arguments as int)),
             builder: (BuildContext context, Store<AppState> store) =>
-                DetailsPage(title: "Details"),
+                DetailsPage(title: store.state.details.title),
           );
         });
       default:
@@ -88,6 +88,7 @@ class App extends StatelessWidget {
           display1: GoogleFonts.montserrat(),
           display2: GoogleFonts.montserrat(),
           display3: GoogleFonts.montserrat(),
+          display4: GoogleFonts.montserrat(),
           title: GoogleFonts.montserrat(),
           subtitle: GoogleFonts.openSans(),
           body1: GoogleFonts.openSans(),

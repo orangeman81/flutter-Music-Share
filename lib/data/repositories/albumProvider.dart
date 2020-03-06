@@ -32,7 +32,6 @@ class AlbumProvider {
 
     final jsonData = json.decode(response.body);
     Details results = new Details.fromJson(jsonData);
-    print(jsonData);
     return results;
   }
 }

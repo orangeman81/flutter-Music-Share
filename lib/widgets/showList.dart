@@ -24,7 +24,7 @@ class ShowList extends StatelessWidget {
               '${dataList[index].title}',
               style: Theme.of(context).textTheme.subtitle,
             ),
-            onTap: () => Navigator.pushNamed(context, "details"),
+            onTap: () => Navigator.pushNamed(context, "details", arguments: dataList[index].album.id),
           );
         });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_music/data/models/state/viewmodels/detailsView.dart';
+import 'package:super_music/widgets/trackList.dart';
 
 class DetailsLayout extends StatelessWidget {
   final DetailsView model;
@@ -20,25 +21,46 @@ class DetailsLayout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                  height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                          model.details.title,
-                          style: TextStyle(
+                    height: 200,
+                    padding: EdgeInsets.all(16),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 24),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                  model.details.artist.pictureBig,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 7,
+                          child: Text(
+                            model.details.artist.name,
+                            maxLines: 2,
+                            style: TextStyle(
                               fontSize:
                                   Theme.of(context).textTheme.display2.fontSize,
-                              color: Colors.black87),
-                        ),
-                ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
                 Container(
-                  height: viewportConstraints.maxHeight - 100,
+                  height: viewportConstraints.maxHeight - 200,
                   padding: EdgeInsets.only(top: 64, left: 8, right: 8),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(124)),
                   ),
-                  child: Container(),
+                  child: TrackList(model.details.tracks),
                 )
               ],
             ),
