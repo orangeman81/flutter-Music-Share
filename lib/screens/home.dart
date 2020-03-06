@@ -30,12 +30,12 @@ class HomePage extends StatelessWidget {
             title: Text('Albums'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            title: Text('Artists'),
+              icon: Icon(Icons.radio),
+            title: Text('Radio'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.radio),
-            title: Text('Radios'),
+            icon: Icon(Icons.favorite),
+            title: Text('Favorites'),
           ),
         ],
         selectedItemColor: Theme.of(context).accentColor,
